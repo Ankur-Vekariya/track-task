@@ -1,9 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import HomeScreen from "./screens/home";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import Home from "./screens/homeScreen";
 
 export default function App() {
-  return <HomeScreen />;
+  return (
+    <SafeAreaView style={{ paddingTop: 35 }}>
+      <Home />
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
