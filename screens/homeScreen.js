@@ -10,9 +10,23 @@ import {
 import Colors from "../utils/Colors";
 
 const Home = ({ navigation }) => {
+  let date = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+  ];
   return (
     <View style={{ paddingHorizontal: 10 }}>
-      <TouchableOpacity
+      <Text
+        style={{
+          fontSize: 28,
+          fontWeight: "bold",
+          color: Colors.dark,
+          textAlign: "center",
+        }}
+      >
+        Hello, {"Ankur Vekariya"}
+      </Text>
+      <View
         style={styles.hotelTypeCard}
         // onPress={() => navigation.navigate("hotel-detail")}
       >
@@ -20,16 +34,15 @@ const Home = ({ navigation }) => {
           style={{
             display: "flex",
             flexDirection: "row",
-            // justifyContent: "space-between",
+            justifyContent: "space-between",
             alignItems: "center",
           }}
         >
           <View>
             <Text
               style={{
-                paddingLeft: 5,
                 fontSize: 28,
-                fontWeight: "400",
+                fontWeight: "700",
                 color: "white",
               }}
             >
@@ -37,9 +50,9 @@ const Home = ({ navigation }) => {
             </Text>
             <Text
               style={{
-                paddingLeft: 5,
                 fontSize: 16,
                 fontWeight: "400",
+                color: "white",
               }}
             >
               {"ankurvekariya2001@gmail.com"}
@@ -60,7 +73,27 @@ const Home = ({ navigation }) => {
             />
           </View>
         </View>
-      </TouchableOpacity>
+      </View>
+      <View style={styles.date}>
+        <Text
+          style={{
+            fontSize: 28,
+            fontWeight: "400",
+            color: Colors.accent,
+          }}
+        >
+          01
+        </Text>
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: "400",
+            color: Colors.accent,
+          }}
+        >
+          mon
+        </Text>
+      </View>
     </View>
   );
 };
@@ -79,14 +112,14 @@ const styles = StyleSheet.create({
 
     elevation: 5,
     width: "100%",
-    height: "50%",
+    height: "30%",
     backgroundColor: Colors.accent,
     borderRadius: 20,
     padding: 10,
     alignContent: "center",
     marginVertical: 5,
   },
-  featured: {
+  date: {
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -96,31 +129,12 @@ const styles = StyleSheet.create({
     shadowRadius: 11.95,
 
     elevation: 5,
-    paddingHorizontal: 5,
-    minWidth: 240,
-    height: 200,
+    width: "15%",
+    // height: "30%",
     backgroundColor: "white",
-    marginRight: 10,
-    borderRadius: 25,
-    paddingVertical: 5,
+    borderRadius: 20,
+    padding: 10,
     alignContent: "center",
-    marginVertical: 10,
-  },
-  bottomTabBar: {
-    backgroundColor: "white",
-    alignContent: "center",
-    marginVertical: 10,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    top: 675,
-  },
-  button: {
-    height: 50,
-    width: "25%",
-    // backgroundColor: "#8CC8FF",
-    alignItems: "center",
-    // borderTopRightRadius: 25,
-    // borderBottomLeftRadius: 25,
+    marginVertical: 5,
   },
 });

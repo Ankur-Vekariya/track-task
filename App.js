@@ -3,11 +3,7 @@ import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import Home from "./screens/homeScreen";
 
 export default function App() {
-  return (
-    <SafeAreaView style={{ paddingTop: 35 }}>
-      <Home />
-    </SafeAreaView>
-  );
+  return <Home />;
 }
 
 const styles = StyleSheet.create({
