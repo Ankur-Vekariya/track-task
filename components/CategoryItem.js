@@ -56,13 +56,15 @@ const styles = StyleSheet.create({
     shadowRadius: 11.95,
 
     elevation: 5,
-    width: 90,
+    width: 100,
     backgroundColor: Colors.orange,
     borderRadius: 20,
+    borderWidth: 1,
+    borderColor: "white",
     padding: 5,
     alignContent: "center",
     marginVertical: 5,
     marginTop: 10,
-    marginHorizontal: 10,
+    marginHorizontal: 5,
   },
 });

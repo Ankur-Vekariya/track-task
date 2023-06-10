@@ -74,11 +74,23 @@ const Home = ({ navigation }) => {
         </View>
         <TouchableOpacity
           style={{
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 9,
+            },
+            shadowOpacity: 0.48,
+            shadowRadius: 11.95,
+
+            elevation: 5,
             backgroundColor: Colors.dark,
             borderRadius: 50,
             width: "20%",
             alignItems: "center",
             alignContent: "center",
+            // borderRadius: 20,
+            borderWidth: 1,
+            borderColor: "white",
           }}
           onPress={() => {
             navigation.navigate("AddCategory");

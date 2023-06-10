@@ -79,6 +79,8 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: Colors.accent,
     borderRadius: 20,
+    borderWidth: 1,
+    borderColor: "white",
     padding: 10,
     alignContent: "center",
     marginVertical: 5,
