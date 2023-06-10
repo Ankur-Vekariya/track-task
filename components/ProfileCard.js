@@ -8,78 +8,61 @@ import {
   View,
 } from "react-native";
 import Colors from "../utils/Colors";
-import ProfileCard from "../components/ProfileCard";
-import CategoryItem from "../components/CategoryItem";
 
-const Home = ({ navigation }) => {
-  let categoryData = [
-    {
-      categoryName: "work",
-      categoryImage: "",
-      total:20,
-    },
-    {
-      categoryName: "personal",
-      categoryImage: "",
-      total:50,
-    },
-    {
-      categoryName: "sports",
-      categoryImage: "",
-      total:3,
-    },
-    {
-      categoryName: "",
-      categoryImage: "",
-      total:50,
-    },
-  ];
+const ProfileCard = ({ navigation }) => {
   return (
-    <View style={{ paddingHorizontal: 10 }}>
-      <ProfileCard navigation={navigation} />
+    <TouchableOpacity
+      style={styles.hotelTypeCard}
+      onPress={() => navigation.navigate("Profile")}
+    >
       <View
         style={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          marginTop: 5,
+          alignItems: "center",
         }}
       >
         <View>
           <Text
             style={{
-              color: Colors.dark,
-              fontSize: 20,
+              fontSize: 28,
+              fontWeight: "700",
+              color: "white",
             }}
           >
-            {"Category"}
+            Hello, {"Ankur Vekariya"}
           </Text>
-        </View>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "black",
-            borderRadius: 50,
-            width: "20%",
-            alignItems: "center",
-            alignContent: "center",
-          }}
-        >
           <Text
             style={{
+              fontSize: 16,
+              fontWeight: "400",
               color: "white",
-              fontSize: 20,
             }}
           >
-            {"Add"}
+            {"ankurvekariya2001@gmail.com"}
           </Text>
-        </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            backgroundColor: Colors.accent,
+            width: "30%",
+            height: "100%",
+            borderRadius: 10,
+          }}
+        >
+          <Image
+            source={require("../assets/home_vector.png")}
+            style={{ height: "100%", width: "100%", borderRadius: 20 }}
+          />
+        </View>
       </View>
-      <CategoryItem navigation={navigation} />
-    </View>
+    </TouchableOpacity>
   );
 };
 
-export default Home;
+export default ProfileCard;
 
 const styles = StyleSheet.create({
   hotelTypeCard: {
@@ -93,12 +76,13 @@ const styles = StyleSheet.create({
 
     elevation: 5,
     width: "100%",
-    height: "30%",
+    height: 100,
     backgroundColor: Colors.accent,
     borderRadius: 20,
     padding: 10,
     alignContent: "center",
     marginVertical: 5,
+    marginTop: 10,
   },
   date: {
     shadowColor: "#000",
