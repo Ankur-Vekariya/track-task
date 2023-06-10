@@ -1,5 +1,5 @@
 export default Colors = {
-  dark: "#0b1578",
+  dark: "#2f4157",
   accent: "#a7caf2",
-  blue: "#f0b092",
+  orange: "#f0b092",
 };

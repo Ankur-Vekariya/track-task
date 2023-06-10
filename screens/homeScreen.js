@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import {
   FlatList,
   Image,
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -16,26 +18,41 @@ const Home = ({ navigation }) => {
     {
       categoryName: "work",
       categoryImage: "",
-      total:20,
+      total: 20,
     },
     {
       categoryName: "personal",
       categoryImage: "",
-      total:50,
+      total: 50,
     },
     {
       categoryName: "sports",
       categoryImage: "",
-      total:3,
+      total: 3,
     },
     {
       categoryName: "",
       categoryImage: "",
-      total:50,
+      total: 50,
+    },
+    {
+      categoryName: "",
+      categoryImage: "",
+      total: 50,
+    },
+    {
+      categoryName: "",
+      categoryImage: "",
+      total: 50,
+    },
+    {
+      categoryName: "",
+      categoryImage: "",
+      total: 50,
     },
   ];
   return (
-    <View style={{ paddingHorizontal: 10 }}>
+    <View style={{ paddingHorizontal: 10, height: "100%" }}>
       <ProfileCard navigation={navigation} />
       <View
         style={{
@@ -57,11 +74,14 @@ const Home = ({ navigation }) => {
         </View>
         <TouchableOpacity
           style={{
-            backgroundColor: "black",
+            backgroundColor: Colors.dark,
             borderRadius: 50,
             width: "20%",
             alignItems: "center",
             alignContent: "center",
+          }}
+          onPress={() => {
+            navigation.navigate("AddCategory");
           }}
         >
           <Text
@@ -74,7 +94,26 @@ const Home = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <CategoryItem navigation={navigation} />
+      <View style={{ width: "100%" }}>
+        <FlatList
+          data={categoryData}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => <CategoryItem navigation={navigation} />}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.writeTaskWrapper}
+      >
+        <TouchableOpacity
+          onPress={() => navigation.navigate("AddTask")}
+          style={styles.addWrapper}
+        >
+          <Text style={styles.addText}>+</Text>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
     </View>
   );
 };
@@ -100,7 +139,16 @@ const styles = StyleSheet.create({
     alignContent: "center",
     marginVertical: 5,
   },
-  date: {
+  writeTaskWrapper: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    marginBottom: 7.5,
+    marginHorizontal: 15,
+  },
+  addWrapper: {
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -108,14 +156,18 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.48,
     shadowRadius: 11.95,
-
     elevation: 5,
-    width: "15%",
-    // height: "30%",
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 10,
-    alignContent: "center",
-    marginVertical: 5,
+    width: 60,
+    height: 60,
+    backgroundColor: Colors.dark,
+    borderRadius: 60,
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "#FFF",
+    borderWidth: 1,
+  },
+  addText: {
+    color: "white",
+    fontSize: 40,
   },
 });

@@ -33,7 +33,7 @@ const CategoryItem = ({ navigation }) => {
         style={{
           fontSize: 16,
           fontWeight: "400",
-          color: "white",
+          color: Colors.dark,
           textAlign: "center",
         }}
       >
@@ -56,31 +56,13 @@ const styles = StyleSheet.create({
     shadowRadius: 11.95,
 
     elevation: 5,
-    width: "25%",
-    backgroundColor: Colors.blue,
+    width: 90,
+    backgroundColor: Colors.orange,
     borderRadius: 20,
-    borderTopRightRadius: 500,
     padding: 5,
     alignContent: "center",
     marginVertical: 5,
     marginTop: 10,
-  },
-  date: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 9,
-    },
-    shadowOpacity: 0.48,
-    shadowRadius: 11.95,
-
-    elevation: 5,
-    width: "15%",
-    // height: "30%",
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 10,
-    alignContent: "center",
-    marginVertical: 5,
+    marginHorizontal: 10,
   },
 });

@@ -5,6 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Profile from "./screens/profile";
 import Colors from "./utils/Colors";
+import AddCategory from "./screens/addCategory";
+import AddTask from "./screens/addTask";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -37,6 +39,22 @@ export default function App() {
         <Stack.Screen
           name="Profile"
           component={Profile}
+          options={{
+            headerTitle: (props) => <LogoTitle {...props} />,
+            headerStyle: { backgroundColor: Colors.accent },
+          }}
+        />
+        <Stack.Screen
+          name="AddCategory"
+          component={AddCategory}
+          options={{
+            headerTitle: (props) => <LogoTitle {...props} />,
+            headerStyle: { backgroundColor: Colors.accent },
+          }}
+        />
+        <Stack.Screen
+          name="AddTask"
+          component={AddTask}
           options={{
             headerTitle: (props) => <LogoTitle {...props} />,
             headerStyle: { backgroundColor: Colors.accent },
