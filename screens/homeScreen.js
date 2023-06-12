@@ -12,6 +12,7 @@ import {
 import Colors from "../utils/Colors";
 import ProfileCard from "../components/ProfileCard";
 import CategoryItem from "../components/CategoryItem";
+import { getTaskFromSqlite } from "../utils/sqlite";
 
 const Home = ({ navigation }) => {
   let categoryData = [
@@ -51,6 +52,9 @@ const Home = ({ navigation }) => {
       total: 50,
     },
   ];
+
+  let tasks = getTaskFromSqlite();
+  console.log("tasks", tasks);
   return (
     <View style={{ paddingHorizontal: 10, height: "100%" }}>
       <ProfileCard navigation={navigation} />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  FlatList,
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -9,9 +9,58 @@ import {
   View,
 } from "react-native";
 import Colors from "../utils/Colors";
+import * as SQLite from "expo-sqlite";
+import { addTaskInSqlite } from "../utils/sqlite";
+
+function openDatabase() {
+  if (Platform.OS === "web") {
+    return {
+      transaction: () => {
+        return {
+          executeSql: () => {},
+        };
+      },
+    };
+  }
+  const db = SQLite.openDatabase("track-task.db");
+  return db;
+}
+
+const db = openDatabase();
 
 const AddTask = ({ navigation }) => {
   const [task, setTask] = useState();
+  console.log("task", task);
+
+  useEffect(() => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        // "DROP TABLE tasks;"
+        "create table if not exists tasks (id integer primary key not null, done int, value text);"
+      );
+    });
+  }, []);
+
+  const add = (text) => {
+    // is text empty?
+    if (text === null || text === "") {
+      return false;
+    }
+    addTaskInSqlite(text);
+
+    // db.transaction(
+    //   (tx) => {
+    //     tx.executeSql("insert into tasks (done, value) values (0, ?)", [text]);
+    //     tx.executeSql("select * from tasks", [], (_, { rows }) =>
+    //       console.log(JSON.stringify(rows))
+    //     );
+    //   },
+    //   (error) => {
+    //     console.log("error sqlite", error);
+    //   },
+    //   () => Alert.alert("task successfully added")
+    // );
+  };
 
   return (
     <View style={{ paddingHorizontal: 10 }}>
@@ -83,7 +132,8 @@ const AddTask = ({ navigation }) => {
           borderColor: "white",
         }}
         onPress={() => {
-          navigation.navigate("AddCategory");
+          add(task);
+          // navigation.navigate("AddCategory");
         }}
       >
         <Text
