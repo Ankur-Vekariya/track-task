@@ -91,7 +91,7 @@ const AddTask = ({ navigation }) => {
         </Text>
         <TextInput
           style={styles.input}
-          placeholder={"Write a task"}
+          placeholder={"Add task name"}
           value={task}
           onChangeText={(text) => setTask(text)}
         />
@@ -108,7 +108,7 @@ const AddTask = ({ navigation }) => {
         </Text>
         <TextInput
           style={styles.input}
-          placeholder={"Write a task"}
+          placeholder={"Select category"}
           value={task}
           onChangeText={(text) => setTask(text)}
         />
@@ -130,6 +130,8 @@ const AddTask = ({ navigation }) => {
           alignContent: "center",
           borderWidth: 1,
           borderColor: "white",
+          bottom: 0,
+          display: "flex",
         }}
         onPress={() => {
           add(task);
@@ -153,7 +155,7 @@ export default AddTask;
 
 const styles = StyleSheet.create({
   input: {
-    shadowColor: "#000",
+    shadowColor: "orange",
     shadowOffset: {
       width: 0,
       height: 9,
@@ -166,7 +168,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     width: "100%",
     backgroundColor: Colors.orange,
-    borderRadius: 20,
+    borderRadius: 10,
     borderColor: "white",
     borderWidth: 1,
     marginVertical: 5,

@@ -1,4 +1,5 @@
 import * as SQLite from "expo-sqlite";
+import { useEffect } from "react";
 import { Alert } from "react-native";
 
 function openDatabase() {
@@ -17,16 +18,15 @@ function openDatabase() {
 
 const db = openDatabase();
 
-const initTable = () => {
+export const addTaskInSqlite = (text) => {
   db.transaction((tx) => {
     tx.executeSql(
       // "DROP TABLE tasks;"
       "create table if not exists tasks (id integer primary key not null, done int, value text);"
     );
   });
-};
-
-export const addTaskInSqlite = (text) => {
+  
+  console.log("text in add task common functions", text);
   db.transaction(
     (tx) => {
       tx.executeSql("insert into tasks (done, value) values (0, ?)", [text]);
@@ -43,24 +43,28 @@ export const addTaskInSqlite = (text) => {
 
 export const getTaskFromSqlite = async (text) => {
   let tasks = [];
-
-  await db.transaction(
-    (tx) => {
-      //   tx.executeSql("insert into tasks (done, value) values (0, ?)", [text]);
-      tx.executeSql("select * from tasks", [], (_, { rows }) => {
-        console.log("rows--------", JSON.stringify(rows));
-        let data = JSON.stringify(rows);
-        console.log("data--", data);
-        data.forEach((element) => {
-          tasks.push(element);
+  return new Promise((resolve, reject) => {
+    return db.transaction(
+      (tx) => {
+        //   tx.executeSql("insert into tasks (done, value) values (0, ?)", [text]);
+        tx.executeSql("select * from tasks", [], (_, { rows }) => {
+          console.log("rows--------", JSON.stringify(rows));
+          let data = rows;
+          console.log("data--", data?._array);
+          data?._array.forEach((element) => {
+            console.log("element", element);
+            tasks.push(element);
+          });
+          resolve(tasks);
         });
-      });
-    },
-    (error) => {
-      console.log("error sqlite", error);
-    },
-    () => Alert.alert("tasks successfully get")
-  );
-  console.log("taasks=======", tasks);
-  return tasks;
+      },
+      (error) => {
+        console.log("error sqlite", error);
+        resolve([]);
+      },
+      () => {
+        console.log("tasks fetched");
+      }
+    );
+  });
 };
